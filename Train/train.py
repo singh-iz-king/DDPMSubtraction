@@ -22,8 +22,6 @@ data = MnistSubtractionDataset(
     transform=transform,
 )
 
-data.subtraction = data.subtraction.iloc[1:100, :]
-
 data_loader = DataLoader(data, batch_size=32, shuffle=True)
 
 model = UNet()
@@ -33,9 +31,9 @@ optimizer = torch.optim.AdamW(model.parameters(), lr=1e-3)
 T = 1000
 schedules = get_ddpm_schedule(T)
 
-epochs = 500
+epochs = 30
 
-CHECKPOINT_INTERVAL = 50
+CHECKPOINT_INTERVAL = 5
 BEST_MODEL_PATH = "runs/run_001/checkpoints/best.pt"
 LAST_CHECKPOINT_PATH = "runs/run_001/checkpoints/last.pt"
 SAMPLE_PATH = "runs/run_001/samples"
